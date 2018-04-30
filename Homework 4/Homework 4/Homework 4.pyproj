@@ -41,7 +41,10 @@
     <Folder Include="Homework_4\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Homework_4\static\content\bd.css" />
+    <Content Include="Homework_4\static\content\clouds.png" />
     <Content Include="Homework_4\static\scripts\myJs.js" />
+    <Content Include="Homework_4\templates\bd.html" />
     <Content Include="requirements.txt" />
     <Content Include="Homework_4\static\content\bootstrap.css" />
     <Content Include="Homework_4\static\content\bootstrap.min.css" />

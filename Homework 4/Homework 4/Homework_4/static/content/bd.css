@@ -1,0 +1,59 @@
+body {
+    background: url(../content/clouds.png) fixed;
+}
+
+.table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    border: 3px solid rgb(200, 200, 200);
+    letter-spacing: 1px;
+    width: 75%;
+}
+
+td, th {
+    border: 2px solid rgb(200, 200, 200);
+    padding: 7px 15px;
+}
+
+thead tr:nth-child(1) th {
+    text-align: center;
+    font-size: 3rem;
+}
+
+thead tr:nth-child(2) th {
+    text-align: center;
+    font-size: 2rem;
+    background-color: rgba(153, 153, 255, 0.9);
+}
+
+th {
+    background-color: rgba(235, 235, 235, 0.9);
+}
+
+td {
+    text-align: center;
+}
+
+tbody tr:nth-child(even) td {
+    background-color: rgba(230, 230, 255, 0.9);
+}
+
+tbody tr:nth-child(odd) td {
+    background-color: rgba(242, 242, 242, 0.9);
+}
+
+tbody {
+    font-size: 1.5rem;
+    font-style: italic;
+}
+
+.images thead tr:nth-child(1) th {
+    background-color: rgba(128, 128, 255, 0.9);
+}
