@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../static/scripts/myJs2.js"></script>
 </head>
 <body>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -22,16 +23,21 @@
                     <form>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Recipient:</label>
-                            <input type="text" class="form-control" id="recipient-name">
+                            <input class="form-control" id="recipient-name" type="email">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Send Email</button>
+                    <button id="sendEmail" type="button" class="btn btn-primary" data-dismiss="modal">Send Email</button>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <span id="closeImageModal">&times;</span>
+        <img class="modal-content" id="img01">
     </div>
 
     <div class="table">
@@ -46,26 +52,7 @@
                     <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody id="imagesTbody">
-                <!--<tr>
-                    <td scope="col">Link</td>
-                    <td scope="col">Description</td>
-                    <td scope="col">
-                        <button type="button" class="send_email" data-toggle="modal" data-target="#exampleModal">
-                            Send Email
-                        </button>
-                    </td>
-                </tr>-->
-                <tr>
-                    <td scope="col">Link2</td>
-                    <td scope="col">Description2</td>
-                    <td scope="col">
-                        <button type="button" class="send_email" data-toggle="modal" data-target="#exampleModal">
-                            Send Email
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
+            <tbody id="imagesTbody"></tbody>
         </table>
     </div>
 </body>
