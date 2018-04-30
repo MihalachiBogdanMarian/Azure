@@ -20,7 +20,11 @@ search_url = "https://api.cognitive.microsoft.com/bing/v7.0/images/search"
 
 @app.route('/')
 def main():
-    return render_template("index.html")
+    return render_template(
+        "index.html",
+        title='Azure',
+        year=datetime.now().year,
+    )
 
 @app.route('/searchPhoto', methods=['POST'])
 def searchPhoto():

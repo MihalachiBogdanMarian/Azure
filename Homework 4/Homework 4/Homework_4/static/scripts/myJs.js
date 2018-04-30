@@ -58,6 +58,7 @@ function imageProcessing(image) {
             type: 'POST',
             success: function (response) {
                 console.log(response);
+                deleteSentence();
             },
             error: function (error) {
                 console.log(error);
