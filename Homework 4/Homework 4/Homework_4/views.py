@@ -36,11 +36,13 @@ def searchPhoto():
 
 @app.route("/getProp/<url>", methods=["POST"])
 def getProp(url):
+	print(url)
 	subscription_key = "f3b511f4df724117af62d1fb82041eda"
 	assert subscription_key
 	vision_base_url = "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/"
 	vision_analyze_url = vision_base_url + "analyze"
-	url = "https://" + url
+	
+	url = "https://" + url.replace("~","/").replace("^","?")
 	headers = {'Ocp-Apim-Subscription-Key': subscription_key }
 	params = {'visualFeatures': 'Categories,Description,Color'}
 	data = {'url': url}
@@ -52,7 +54,7 @@ def getProp(url):
 
 @app.route("/addInBd/<url>/<description>", methods=["POST"])
 def addInBd(url, description):
-    url = "https://" + url
+    url = "https://" + url.replace("~","/").replace("^","?")
     server = 'azurebidi.database.windows.net'
     database = 'ImagesTornado'
     username = 'AzureBidi'

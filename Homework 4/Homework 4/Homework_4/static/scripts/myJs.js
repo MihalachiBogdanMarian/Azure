@@ -33,7 +33,8 @@ $(function () {
 });
 
 function imageProcessing(image) {
-    var url_img = "/getProp/" + image.getAttribute("src").split("https://")[1];
+    var url_img = "/getProp/" + image.getAttribute("src").split("https://")[1].split("/").join("~").split("?").join("^");
+    console.log(url_img)
     $.ajax({
         url: url_img,
         data: $('form').serialize(),
@@ -48,7 +49,7 @@ function imageProcessing(image) {
     });
 
     $('#addInBd').click(function (e) {
-        var url = image.getAttribute("src").split("https://")[1];
+        var url = image.getAttribute("src").split("https://")[1].split("/").join("~").split("?").join("^");
         var description = document.getElementById("azureSentence").innerHTML;
         var urlBd = "/addInBd/" + url + "/" + description;
         $.ajax({
