@@ -1,3 +1,5 @@
+var globalImage;
+
 $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus');
 })
@@ -29,12 +31,11 @@ $(function () {
             }
         });
     });
-
 });
 
 function imageProcessing(image) {
+    globalImage = image;
     var url_img = "/getProp/" + image.getAttribute("src").split("https://")[1].split("/").join("~").split("?").join("^");
-    console.log(url_img)
     $.ajax({
         url: url_img,
         data: $('form').serialize(),
@@ -47,9 +48,12 @@ function imageProcessing(image) {
             console.log(error);
         }
     });
+}
 
+$(function () {
     $('#addInBd').click(function (e) {
-        var url = image.getAttribute("src").split("https://")[1].split("/").join("~").split("?").join("^");
+        e.preventDefault();
+        var url = globalImage.getAttribute("src").split("https://")[1].split("/").join("~").split("?").join("^");
         var description = document.getElementById("azureSentence").innerHTML;
         var urlBd = "/addInBd/" + url + "/" + description;
         $.ajax({
@@ -57,7 +61,6 @@ function imageProcessing(image) {
             data: $('form').serialize(),
             type: 'POST',
             success: function (response) {
-                console.log(response);
                 deleteSentence();
             },
             error: function (error) {
@@ -65,7 +68,7 @@ function imageProcessing(image) {
             }
         });
     });
-}
+});
 
 function deleteSentence() {
     var p = document.getElementById("azureSentence");

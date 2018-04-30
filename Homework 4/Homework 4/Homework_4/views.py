@@ -35,7 +35,7 @@ def searchPhoto():
     response = requests.get(search_url, headers=headers, params=params)
     response.raise_for_status()
     search_results = response.json()
-    thumbnail_urls = [img["thumbnailUrl"] for img in search_results["value"][:15]]
+    thumbnail_urls = [img["thumbnailUrl"] for img in search_results["value"]]
     return json.dumps(thumbnail_urls)
 
 @app.route("/getProp/<url>", methods=["POST"])
