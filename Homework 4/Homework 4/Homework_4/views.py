@@ -11,6 +11,7 @@ from IPython.display import HTML
 import matplotlib.pyplot as plt
 from PIL import Image
 from io import BytesIO
+import pyodbc
 
 subscription_key = "683934df678c4864b7d5f3ddbffffa3a"
 assert subscription_key
@@ -39,7 +40,7 @@ def getProp(url):
 	assert subscription_key
 	vision_base_url = "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/"
 	vision_analyze_url = vision_base_url + "analyze"
-	url = "https://tse4.mm.bing.net/th?id=" + url;
+	url = "https://" + url
 	headers = {'Ocp-Apim-Subscription-Key': subscription_key }
 	params = {'visualFeatures': 'Categories,Description,Color'}
 	data = {'url': url}
@@ -47,5 +48,19 @@ def getProp(url):
 	response.raise_for_status()
 	analysis = response.json()
 	image_caption = analysis["description"]["captions"][0]["text"].capitalize()
-	print(image_caption)
 	return json.dumps(image_caption)
+
+@app.route("/addInBd/<url>/<description>", methods=["POST"])
+def addInBd(url, description):
+    url = "https://" + url
+    server = 'azurebidi.database.windows.net'
+    database = 'ImagesTornado'
+    username = 'AzureBidi'
+    password = 'Azure6598'
+    driver= '{ODBC Driver 13 for SQL Server}'
+    cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1443;DATABASE='+database+';UID='+username+';PWD='+ password)
+    cursor = cnxn.cursor()
+    cursor.execute("INSERT INTO Image (ImageLink, ImageDescription) VALUES('" + url + "', '" + description.split("\"")[1] + "')")
+    cnxn.commit()
+    cnxn.close()
+    return json.dumps("OK")

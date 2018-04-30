@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <title>Homework 4 - {{ title }}</title>
+    <link rel="shortcut icon" href="#">
     <link rel="stylesheet" href="../static/content/site.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -24,7 +25,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="deleteSentence()">Close</button>
-                    <button type="button" class="btn btn-primary">Register Image</button>
+                    <button id="addInBd" type="button" class="btn btn-primary">Register Image</button>
                 </div>
             </div>
         </div>
@@ -35,7 +36,7 @@
             <h1>Images Tornado</h1>
             <form class="form-signin">
                 <input type="name" name="searchTab" id="searchTab" class="form-control" placeholder="Search for images..." required autofocus>
-                <input id="btnSearch" type="submit" value="Search">
+                <input id="btnSearch" type="submit" class="btn btn-lg btn-primary btn-block" value="Search">
             </form>
         </div>
         <div id="imagesRes"></div>

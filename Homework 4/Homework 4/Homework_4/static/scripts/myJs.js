@@ -1,31 +1,6 @@
 $('#myModal').on('shown.bs.modal', function () {
-   
     $('#myInput').trigger('focus');
 })
-
-function imageProcessing(image) {
-    //var p = document.getElementById("azureSentence");
-    //p.innerHTML = image.getAttribute("src");
-    var url_img = "/getProp/" + image.getAttribute("src").split("?id=")[1];
-    $.ajax({
-        url: url_img,
-        data: $('form').serialize(),
-        type: 'POST',
-        success: function (response) {
-            console.log(response);
-            var p = document.getElementById("azureSentence");
-            p.innerHTML = response;
-        },
-        error: function (error) {
-            console.log(error);
-        }
-    });
-}
-
-function deleteSentence() {
-    var p = document.getElementById("azureSentence");
-    p.innerHTML = "";
-}
 
 $(function () {
     $('#btnSearch').click(function (e) {
@@ -54,4 +29,43 @@ $(function () {
             }
         });
     });
+
 });
+
+function imageProcessing(image) {
+    var url_img = "/getProp/" + image.getAttribute("src").split("https://")[1];
+    $.ajax({
+        url: url_img,
+        data: $('form').serialize(),
+        type: 'POST',
+        success: function (response) {
+            var p = document.getElementById("azureSentence");
+            p.innerHTML = response;
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+
+    $('#addInBd').click(function (e) {
+        var url = image.getAttribute("src").split("https://")[1];
+        var description = document.getElementById("azureSentence").innerHTML;
+        var urlBd = "/addInBd/" + url + "/" + description;
+        $.ajax({
+            url: urlBd,
+            data: $('form').serialize(),
+            type: 'POST',
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+}
+
+function deleteSentence() {
+    var p = document.getElementById("azureSentence");
+    p.innerHTML = "";
+}
